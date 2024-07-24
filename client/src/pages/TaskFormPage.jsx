@@ -6,6 +6,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import {useAuth} from '../context/AuthContext'
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -15,6 +16,7 @@ const TaskFormPage = () => {
   const { createTask, getTask, updateTask } = useTasks();
   const navigate = useNavigate();
   const params = useParams();
+  const {user} = useAuth()
 
   useEffect(() => {
     async function loadTask() {
@@ -31,7 +33,7 @@ const TaskFormPage = () => {
   const sendEmail = async (taskData) => {
     try {
       const response = await axios.post('http://localhost:4000/api/send-email', {
-        to: 'gastoncarrizoo15@gmail.com', 
+        to: user.email, 
         subject: 'Nueva Tarea Creada o Actualizada',
         text: `Se ha creado/actualizado una tarea con los siguientes detalles:\n\nTítulo: ${taskData.title}\nDescripción: ${taskData.description}\nFecha de Creación: ${dayjs(taskData.date).format('YYYY-MM-DD HH:mm')}\nÚltima Modificación: ${dayjs(taskData.lastModified).format('YYYY-MM-DD HH:mm')}`
       }, {
@@ -67,7 +69,7 @@ const TaskFormPage = () => {
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">
       <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md'>
         <form onSubmit={onSubmit}>
-          <label htmlFor='title'>title</label>
+          <label htmlFor='title'>titulo</label>
           <input 
             type="text" 
             placeholder="title" 
@@ -76,7 +78,7 @@ const TaskFormPage = () => {
             autoFocus
           />
 
-          <label htmlFor='description'>description</label>
+          <label htmlFor='description'>Descripcion</label>
           <textarea 
             rows='3' 
             placeholder="Description"
@@ -84,14 +86,14 @@ const TaskFormPage = () => {
             className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'
           ></textarea>
 
-          <label htmlFor='date'>date</label>
+          <label htmlFor='date'>Fecha</label>
           <input 
             type='datetime-local' 
             {...register('date')}
             className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'
           />
       
-          <button className='bg-indigo-500 px-3 py-2 rounded-md'>Save</button>
+          <button className='bg-indigo-500 px-3 py-2 rounded-md'>Guardar</button>
         </form>
       </div>
     </div>

@@ -36,30 +36,30 @@ const RegisterPage = () => {
           </div>
         ))
       }
-      <h1 className='text-3xl font-bold my-2'>Register</h1>
+      <h1 className='text-3xl font-bold my-2'>Registrarse</h1>
         <form onSubmit={onSubmit}>
         
             <input type="text" {...register('username',{required:true})} placeholder='username' 
             className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
             {
-              errors.username && (<p className='text-red-500'>Username is required</p>
+              errors.username && (<p className='text-red-500'>Usuario es requerido</p>
             )}
             <input type="email" {...register('email',{required:true} )} placeholder="email" 
             className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'/>
             {
-              errors.email && (<p className='text-red-500'>Email is required</p>
+              errors.email && (<p className='text-red-500'>Email es requerido</p>
             )}
             <input type="password" {...register('password',{required:true, minLength:6})} placeholder="password" 
             className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'/>
             {
-              errors.password && (<p className='text-red-500'>Password is required</p>
+              errors.password && (<p className='text-red-500'>Contraseña es requerida</p>
             )}
             <button type='submit'
             className='bg-sky-500 text-white px-4 py-2 rounded-md my-2'
-            >Register</button>
+            >Registrar</button>
         </form>
 
-        <p className="flex gap-x-2 justify-between">Ya tienes una cuenta? <Link to='/login' className="text-sky-500">SingIn</Link> </p>
+        <p className="flex gap-x-2 justify-between">Ya tienes una cuenta? <Link to='/login' className="text-sky-500">Ingresar</Link> </p>
     </div>
     </div>
   )

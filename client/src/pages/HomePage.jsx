@@ -1,6 +1,12 @@
+
+
 const HomePage = () => {
+
   return (
-    <div>HomePage</div>
+    <div>
+      <h1>Bienvenido al Tasks Manager</h1>
+      
+    </div>
   )
 }
 

@@ -26,6 +26,7 @@ const TaskCard = ({ task }) => {
           </Link>
         </div>
       </header>
+      <p className="text-slate-300 ">{task.description}</p>
       <p className="text-gray-400 mt-2">
         Última Modificación: {dayjs(task.lastModified).format('DD/MM/YYYY HH:mm:ss')}
       </p>
